@@ -22,7 +22,7 @@ def get_array_url(page)
 
   array_url = []
 
-  url.each { |deputy| array_url << url_base + deputy['href']}
+  url.each { |deputy| array_url << url_base + deputy['href'] }
 
   array_url
 end
@@ -48,7 +48,7 @@ def hash_deputy_email(array_deputy_name, array_deputy_email)
   size = array_deputy_email.size
   cities_array = []
   size.times do |cpt|
-    hash = { array_deputy_name[cpt] => array_deputy_email[cpt]}
+    hash = { array_deputy_name[cpt] => array_deputy_email[cpt] }
     # hash[crypto_syb[cpt].text] = crypto_price[cpt].text
     cities_array << hash
   end
