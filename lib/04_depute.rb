@@ -7,7 +7,7 @@ require 'open-uri'
 def get_array_name(page)
   deputy_name = page.xpath('//div[@id="deputes-list"]/div/ul/li/a')
 
-  #puts deputy_name
+  # puts deputy_name
 
   array_deputy_name = []
 
@@ -48,7 +48,10 @@ def hash_deputy_email(array_deputy_name, array_deputy_email)
   size = array_deputy_email.size
   cities_array = []
   size.times do |cpt|
-    hash = { array_deputy_name[cpt] => array_deputy_email[cpt] }
+    array_deputy_full_name = array_deputy_name[cpt].split
+    hash = { first_name: array_deputy_full_name[1],
+             last_name: array_deputy_full_name[2..-1].join(' '),
+             email: array_deputy_email[cpt] }
     # hash[crypto_syb[cpt].text] = crypto_price[cpt].text
     cities_array << hash
   end
@@ -65,10 +68,14 @@ def perform
   hash_deputy_email(array_deputy_name, array_deputy_email)
 end
 
+# name = ["mr jean jacque de fouquet", "mm. fontaine de la courte"]
+# email = ["mjjq@mail.com", "mfdl@mail.com"]
+#
+# puts hash_deputy_email(name, email)
+
 puts perform
 
 # page = Nokogiri::HTML(URI.open('http://www2.assemblee-nationale.fr/deputes/fiche/OMC_PA605036'))
 #
 # puts page.css('#cookies-cnil-more')
-#
-#
+
